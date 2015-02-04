@@ -5,6 +5,7 @@ A Multilayer Perceptron implementation in Vala
 Included is a sample training program that takes a text file with JSON data and builds one MLP (Multilayer Perceptron) for each training set.
 
 Example:
+
 	[
 	{'name':'AND', 'count_inputs': 2, 'count_neurons': 50, 'layers': [50,1],
 	 'samples': [
@@ -14,13 +15,14 @@ Example:
 		{'input': [1,1], 'expected': [1], 'skip': true}
 	]}
 	]
-
+		
 This will create one MLP that will AND two input values and output a single value.
-name: A label for output
-count_inputs: The number of inputs for the MLP
-count_neurons: The number of neurons on the first layer.  Consequently this is also the number of outputs for that layer.  So if there are no additional layers then this will be the number of outputs.
-layers: An array of integers indicating the number of neurons for each additional layer.  The last number is the output layer, so this indicates the number of outputs from the MLP
-samples: An array of JSON objects indicating a training sample with an array of inputs (equal to the number of MLP inputs in count_inputs) and expected outputs (equal in number to the number of outputs/neurons in the output layer).  If skip is set to true then this sample will not be trained, but will be tested.
+
+	name: A label for output
+	count_inputs: The number of inputs for the MLP
+	count_neurons: The number of neurons on the first layer.  Consequently this is also the number of outputs for that layer.  So if there are no additional layers then this will be the number of outputs.
+	layers: An array of integers indicating the number of neurons for each additional layer.  The last number is the output layer, so this indicates the number of outputs from the MLP
+	samples: An array of JSON objects indicating a training sample with an array of inputs (equal to the number of MLP inputs in count_inputs) and expected outputs (equal in number to the number of outputs/neurons in the output layer).  If skip is set to true then this sample will not be trained, but will be tested.
 
 
 # API
@@ -47,11 +49,13 @@ The following will create a new MLP that takes 4 inputs and has 50 neurons on th
 	
 After an MLP is generated it can be trained with the "backpropagate" method.  The following attempts to train the MLP with a few samples for a 2 bit adder:
   double learning_rate = 0.001;
+  
 		p.backpropagate({0,0, 0,0}, {0,0,0}, learning_rate);	//0+0
 		p.backpropagate({0,0, 0,1}, {0,0,1}, learning_rate);	//0+1
 		p.backpropagate({0,0, 1,0}, {0,1,0}, learning_rate);	//0+2
 		p.backpropagate({0,0, 1,1}, {0,1,1}, learning_rate);	//0+3
 
 Finally after the MLP is trained the "evaluate" method can be used to calculate a value with the network.  This method takes a double array of size input_count and outputs a double array of size equal to the number of neurons in the output layer:
+		
 		p.evaluate({0, 0, 0, 0})); //Should output {0,0,0}
 
