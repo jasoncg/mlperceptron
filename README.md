@@ -1,5 +1,6 @@
 # mlperceptron
-A Multilayer Perceptron implementation in Vala
+A Multilayer Perceptron implementation in the Vala programming language
+http://en.wikipedia.org/wiki/Vala_%28programming_language%29
 
 # Training Program
 Included is a sample training program that takes a text file with JSON data and builds one MLP (Multilayer Perceptron) for each training set.
